@@ -1,5 +1,6 @@
 package com.management.jpa.entity;
 
+import com.management.constant.Gender;
 import com.management.request.AddUserRequest;
 import lombok.*;
 
@@ -37,6 +38,12 @@ public class UserEntity {
     @Column(name="phone_verified")
     boolean isphoneVerified;
 
+    @Column(name = "gender")
+    Gender gender;
+
+    @Column(name = "is_actives",columnDefinition = "tinyint not null default 1")
+    boolean active;
+
     @Column(name="created_at",updatable = false)
     Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
 
@@ -50,5 +57,6 @@ public class UserEntity {
         this.email = request.getEmail();
         this.phoneNumber = request.getPhoneNumber();
         this.isphoneVerified = false;
+        this.gender = request.getGender();
     }
 }

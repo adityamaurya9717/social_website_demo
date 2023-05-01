@@ -1,10 +1,12 @@
 package com.management.request;
 
+import com.management.constant.Gender;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class AddUserRequest {
 
     @Email(message = "invalid email format")
@@ -27,5 +30,7 @@ public class AddUserRequest {
 
     @NotEmpty(message = "phone number cannot be null")
     String phoneNumber;
+    @NotNull(message = "gender cannot be null")
+    Gender gender;
 
 }

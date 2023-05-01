@@ -1,5 +1,6 @@
 package com.management.service.impl;
 
+import com.management.exception.GlobalControllerExceptionHandler;
 import com.management.jpa.entity.UserEntity;
 import com.management.jpa.entity.UserFriendsEntity;
 import com.management.jpa.repo.UserFriendsReposiory;
@@ -12,6 +13,8 @@ import com.management.request.AddFriendRequest;
 import com.management.request.AddUserRequest;
 import com.management.service.UserService;
 import org.hibernate.internal.build.AllowPrintStacktrace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,6 +30,7 @@ import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService {
+    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -43,11 +47,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<?> createAccount(AddUserRequest request) {
         try {
+            LOG.info("UserServiceImpl::createAccount  m {}",request.toString());
             UserEntity userEntity = new UserEntity(request);
             userEntity = userRepository.save(userEntity);
             return ResponseEntity.status(HttpStatus.CREATED).body("User Created");
         }
         catch (DataIntegrityViolationException integrityViolationException){
+           LOG.error("UserServiceImpl::createAccount  e{}",integrityViolationException.getMessage());
            return ResponseEntity.status(HttpStatus.CONFLICT).body("email Already Present");
         }
         catch (Exception ex){
