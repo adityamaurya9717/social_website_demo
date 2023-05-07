@@ -3,6 +3,7 @@ package com.management.jpa.entity;
 import com.management.constant.Gender;
 import com.management.request.AddUserRequest;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
+@DynamicUpdate
 @Data
 @Getter
 @Setter
@@ -43,6 +45,9 @@ public class UserEntity {
 
     @Column(name = "is_actives",columnDefinition = "tinyint not null default 1")
     boolean active;
+
+    @Column(name = "image_link",columnDefinition = "varchar(255)")
+    String imageUrl;
 
     @Column(name="created_at",updatable = false)
     Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());

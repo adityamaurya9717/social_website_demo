@@ -15,6 +15,5 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public void handleConflict(DataIntegrityViolationException exception) {
        String message =  exception.getMessage();
-
      }
 }

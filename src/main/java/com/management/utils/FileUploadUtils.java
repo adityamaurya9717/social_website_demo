@@ -1,8 +1,9 @@
 package com.management.utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,8 @@ import java.nio.file.Paths;
 @Component
 public class FileUploadUtils {
 
+    private static final Logger LOG = LoggerFactory.getLogger(FileUploadUtils.class);
+
     private String BASE_PATH;
 
     @Autowired
@@ -23,14 +26,14 @@ public class FileUploadUtils {
     @PostConstruct
     public void init(){
         this.BASE_PATH = env.getProperty("upload.dir");
-        System.out.println("======"+this.BASE_PATH );
-
+        LOG.info("FileUploadUtils::init  basepath {}",this.BASE_PATH);
     }
     public void uploadFileToDIR(MultipartFile multipartFile,boolean toDeleted) throws Exception {
     }
-    private void uploadFileToDIR(MultipartFile multipartFile) throws Exception {
+    public String uploadFileToDIR(MultipartFile multipartFile) throws Exception {
 
       if(multipartFile.isEmpty()){
+          LOG.info("FileUploadUtils::uploadFileToDIR m { multipart in empty }");
           throw new Exception("MultiPartFile Not found");
       }
       String fileName = multipartFile.getOriginalFilename();
@@ -38,6 +41,7 @@ public class FileUploadUtils {
       byte[] bytes = multipartFile.getBytes();
       try {
          p = Files.write(p, bytes);
+         return p.toString();
       }
       catch (IOException ioException){
           throw ioException;

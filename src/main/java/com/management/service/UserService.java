@@ -15,6 +15,8 @@ public interface UserService {
 
     public ResponseEntity<?> addFriendRequest(AddFriendRequest request);
 
+    public ResponseEntity<?> userALLFriends(String email);
+
     public ResponseEntity<?> updateFriendRequest(AddFriendRequest request);
 
     public void addUser(UserModelRequest request);

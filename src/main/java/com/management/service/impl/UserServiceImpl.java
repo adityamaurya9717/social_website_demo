@@ -11,6 +11,7 @@ import com.management.mongodocument.user.UserModel;
 import com.management.mongorepo.UserModelRepo;
 import com.management.request.AddFriendRequest;
 import com.management.request.AddUserRequest;
+import com.management.response.UserFriendsResponse;
 import com.management.service.UserService;
 import org.hibernate.internal.build.AllowPrintStacktrace;
 import org.slf4j.Logger;
@@ -23,10 +24,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -72,6 +76,27 @@ public class UserServiceImpl implements UserService {
      UserFriendsEntity userFriendsEntity = new UserFriendsEntity(request.getUserId(), request.getFriendUserId());
      userFriendsEntity = userFriendsReposiory.save(userFriendsEntity);
      return ResponseEntity.ok(userFriendsEntity);
+    }
+
+    @Override
+    @Transactional
+    public ResponseEntity<?> userALLFriends(String email) {
+       UserEntity userEntity  = userRepository.findByEmailAndActiveTrue(email);
+       if( ObjectUtils.isEmpty(userEntity) ){
+           return ResponseEntity.notFound().build();
+       }
+       List<Long> friendsUserIds = userFriendsReposiory.getUserFriendsIds(userEntity.getId());
+       List<UserFriendsResponse> userFriendsResponses = new ArrayList<>();
+       if( ObjectUtils.isEmpty(friendsUserIds) ){
+          return ResponseEntity.ok(userFriendsResponses);
+       }
+       List<UserEntity> userEntities   = userRepository.findByIdIn(friendsUserIds);
+       userEntities.forEach(data->{
+           UserFriendsResponse friendsResponse = new UserFriendsResponse();
+           BeanUtils.copyProperties(data,friendsResponse);
+           userFriendsResponses.add(friendsResponse);
+       });
+       return ResponseEntity.ok(userFriendsResponses);
     }
 
     @Override
