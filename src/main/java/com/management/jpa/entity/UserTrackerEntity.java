@@ -47,7 +47,7 @@ public class UserTrackerEntity implements Serializable {
 
     @BatchSize(size = 100)
     @OneToMany(fetch = FetchType.LAZY,targetEntity = UserFollowerEntity.class)
-    @JoinColumn(referencedColumnName = "user_id")
+    @JoinColumn(referencedColumnName = "fk_user_id")
     private Set<UserFollowerEntity> userFollowers;
 
 
