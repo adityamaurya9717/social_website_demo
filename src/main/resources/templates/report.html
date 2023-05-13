@@ -1,0 +1,64 @@
+<html>
+<head>
+    <style>
+        .div{
+            width: 100%;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th{
+            font-size: large;
+            color:black;
+        }
+        tr{
+            background-color: orange;
+            border-style: dotted;
+            border:2px solid red;
+            color: blue;
+        }
+        td{
+            padding:2px;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Summary</h1>
+
+<div class="div">
+    <table>
+        <!--  heading  -->
+        <thead>
+
+        </thead>
+        <tr>
+            <th> Sno</th>
+            <th>Plant Name ${root.one.plantName}</th>
+            <th>Unmapped PO Count</th>
+        </tr>
+        <!--data -->
+            <#assign myHash = root >
+             <#assign x=1>
+             <#list myHash?keys as k>
+                <#assign myvalue = myHash[k]>
+                  <tr>
+                    <td>${x}</td>
+                     <td>${myvalue.plantName}</td>
+                    <td>${myvalue.totalCount}</td>
+                  </tr>
+             <#assign x++>
+           </#list>
+
+    </table>
+
+
+</div>
+
+</body>
+
+
+
+</html>

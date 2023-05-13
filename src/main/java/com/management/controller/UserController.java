@@ -25,6 +25,7 @@ public class UserController {
         return userService.createAccount(request);
     }
 
+    //send friend request
     @PostMapping("friend-request")
     public ResponseEntity<?> addFriendRequest(@RequestBody AddFriendRequest request){
      return null;

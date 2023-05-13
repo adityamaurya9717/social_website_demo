@@ -44,9 +44,11 @@ public class FileUploadUtils {
          return p.toString();
       }
       catch (IOException ioException){
+          LOG.error("FileUploadUtils::uploadFileToDIR  e {}",ioException);
           throw ioException;
       }
       catch (Exception ex){
+          LOG.error("FileUploadUtils::uploadFileToDIR  e {}",ex);
           throw ex;
       }
     }

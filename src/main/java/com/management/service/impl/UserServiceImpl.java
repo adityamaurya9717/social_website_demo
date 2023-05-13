@@ -99,6 +99,8 @@ public class UserServiceImpl implements UserService {
        return ResponseEntity.ok(userFriendsResponses);
     }
 
+
+    // accepte friend request
     @Override
     public ResponseEntity<?> updateFriendRequest(AddFriendRequest request) {
         Integer count = userRepository.isUserExists(Arrays.asList(request.getUserId(), request.getFriendUserId()));

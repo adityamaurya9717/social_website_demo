@@ -21,10 +21,10 @@ public class MongoConfig  extends AbstractMongoClientConfiguration {
     @Autowired
     Environment environment;
 
-    @Override
-    protected boolean autoIndexCreation() {
-        return true;
-    }
+//    @Override
+//    protected boolean autoIndexCreation() {
+//        return true;
+//    }
 
     @Override
     public MongoClient mongoClient() {

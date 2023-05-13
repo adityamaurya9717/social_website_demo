@@ -11,15 +11,16 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "post_like")
+@ToString
 public class PostLikeModel {
 
     @MongoId
     private String id;
 
-    @Field(value ="postId")
+    @Field(value ="postId") // postId this is given by mysql
     Long postId;
 
-    @Field(value = "likeEmail")
+    @Field(value = "likeEmail") // person email who liked a post
     String likeEmail;
 
     @Field(value = "createdAt")

@@ -67,7 +67,7 @@ public class PostServiceImpl implements PostService {
         for (UserPostModel userPostModel : userPostModelList){
             userPostModel.getPostLikeModelList();
         }
-        userPostModelList =userPostModelRepo.findAll();
+        userPostModelList = userPostModelRepo.findAll();
         return ResponseEntity.ok(userPostModelList);
     }
 

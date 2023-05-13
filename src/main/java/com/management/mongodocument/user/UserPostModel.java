@@ -31,15 +31,23 @@ public class UserPostModel {
 
     @Field(value = "postDescription")
     String postDescripion;
+    @Field(value = "postUrl")
+    String postUrl = "";
 
-   // @DocumentReference(lookup="{'users_post':?#{#self.postId} }")
+    @Field(value = "createdOn")
+    Long createdOn;
+
     @DBRef
     List<PostLikeModel> postLikeModelList;
+
+    @DBRef
+    List<PostCommentModel> postCommentModels;
 
     public UserPostModel(UserPostEntity userPostEntity) {
         this.postId = userPostEntity.getId();
         this.userEmail = userPostEntity.getEmail();
         this.postDescripion = userPostEntity.getPostDescription();
         this.postType = userPostEntity.getPostType();
+        this.createdOn = System.currentTimeMillis();
     }
 }

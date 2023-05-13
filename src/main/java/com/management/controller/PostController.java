@@ -27,9 +27,15 @@ public class PostController {
     public ResponseEntity<?> getPostByEmail(@RequestParam("email") String email){
         return postService.findPostByEmail(email);
     }
+
+    // like post of some user
     @GetMapping("/post-likes")
     public ResponseEntity<?> postLike(@RequestParam("postId") Long postId,@RequestParam("email") String email){
        return postService.postLike(postId,email);
+    }
+   // api to comment on Post >  postId, email address who is comment and comment detail
+    public ResponseEntity<?> postComment(Long postId,String email,String description){
+     return null;
     }
 
 }

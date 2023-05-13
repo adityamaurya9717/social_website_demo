@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.BeanSerializer;
 import com.management.mongodocument.user.UserAddress;
 import com.management.mongodocument.user.UserModel;
+import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -20,6 +21,11 @@ import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
 import java.util.Date;
 
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserModelRequest {
 
 

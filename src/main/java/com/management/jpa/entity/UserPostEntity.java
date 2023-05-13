@@ -29,10 +29,17 @@ public class UserPostEntity {
     @Column(name = "post_type")
     String postType;
 
+    @Column(name = "postUrl",columnDefinition = "varchar(500) default '' ",updatable = false)
+    String postUrl;
+
+    @Column(name = "created_on")
+    Long createdOn;
+
      public UserPostEntity(CreatePostRequest request){
       this.email =request.getEmail();
       this.postType = request.getPostType();
       this.postDescription = request.getPostDescription();
+      this.createdOn = System.currentTimeMillis();
      }
 
 
