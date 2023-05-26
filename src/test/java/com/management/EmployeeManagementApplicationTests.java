@@ -77,12 +77,19 @@ class EmployeeManagementApplicationTests {
 
 		Map<String,Object> map2 = new LinkedHashMap<>();
 		map2.put("plantName","plant two");
-		map2.put("totalCount",12);
+		map2.put("totalCount",13);
 
-		integerMapMap.put("one",map);
-		integerMapMap.put("two",map2);
+		Map<String,Object> map3 = new LinkedHashMap<>();
+		map3.put("plantName","plant three");
+		map3.put("totalCount",14);
 
-		root.put("root",integerMapMap);
+		integerMapMap.put("1",map);
+		integerMapMap.put("2",map2);
+		integerMapMap.put("3",map3);
+
+		//root.put("root",integerMapMap);
+		root.put("tabelData",integerMapMap);
+		root.put("industryType","Fashion");
 
 
 		Template reportTemplate = config.getTemplate("report.html");

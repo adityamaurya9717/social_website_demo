@@ -28,6 +28,8 @@
 <body>
 <h1>Summary</h1>
 
+<h1>Industry Type ${industryType} </h1>
+
 <div class="div">
     <table>
         <!--  heading  -->
@@ -36,11 +38,11 @@
         </thead>
         <tr>
             <th> Sno</th>
-            <th>Plant Name ${root.one.plantName}</th>
+            <th>Plant Name </th>
             <th>Unmapped PO Count</th>
         </tr>
         <!--data -->
-            <#assign myHash = root >
+            <#assign myHash = tabelData>
              <#assign x=1>
              <#list myHash?keys as k>
                 <#assign myvalue = myHash[k]>

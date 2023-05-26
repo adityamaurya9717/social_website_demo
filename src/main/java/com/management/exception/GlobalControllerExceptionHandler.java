@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.sql.SQLException;
+import java.util.function.Function;
+
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalControllerExceptionHandler.class);
@@ -16,4 +20,5 @@ public class GlobalControllerExceptionHandler {
     public void handleConflict(DataIntegrityViolationException exception) {
        String message =  exception.getMessage();
      }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.websocket.server.ServerEndpoint;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,0 +1,12 @@
+ <!--data -->
+            <#assign myHash = root >
+             <#assign x=1>
+             <#list myHash?keys as k>
+                <#assign myvalue = myHash[k]>
+                  <tr>
+                    <td>${x}</td>
+                     <td>${myvalue.plantName}</td>
+                    <td>${myvalue.totalCount}</td>
+                  </tr>
+             <#assign x++>
+           </#list>
